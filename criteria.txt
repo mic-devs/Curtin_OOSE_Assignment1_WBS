@@ -1,0 +1,25 @@
+Program summary:
+
+App.java has the 'main'. It reads the from the .txt save file, and saves the WBS data into a WBS object (WBS.java).
+
+App.java then runs the menu until the user quits. While the menu is running, the user can manipulate and configure the WBS (WBS object). The menu operations are initialized as objects from OpsSingle, OpsHigh, OpsMedi. 
+
+As user quits the menu, the updated WBS is saved back into the .txt save file.
+
+--------------------------------------------------------------------
+
+Criteria (e):
+
+Template pattern is implemented for the menu's estimate effort operations. Ops.java is the template that takes in the task ID to be estimated, number of estimators, and configuration.
+
+Ops.java will take in the effort estimations, then call upon the appropriate reconciliation approach based on the configuration. The three different reconciliation approaches are saved and subsequently called as hooks. These hooks being, OpsSingle.java, OpsHigh.java, and OpsMedi.java.
+
+--------------------------------------------------------------------
+
+Criteria (f)
+
+Composite pattern is implemented for the handling and saving the Tasks. Task.java is an abstract class acting as the base-node class, which can later be either a ParentTask or SingleTask that extends from it. 
+
+SingleTask.java represents a single standalone task with/without an effort value. This is the leaf-node class. 
+
+ParentTask.java represents a parent task that holds one or more Tasks (either a SingleTask or ParentTask itself). It achieves that by being the composite-node class, being able to store multiple Task nodes. Its subtasks, and each subtask's own subtasks, and so on..., can be accessed via recursing through each one.
